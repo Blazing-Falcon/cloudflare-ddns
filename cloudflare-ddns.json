@@ -1,0 +1,8 @@
+{
+  "CF_API_TOKEN": "paste-your-token-here",
+  "CF_ZONE_NAME": "example.com",
+  "CF_RECORD_NAME": "ssh.example.com",
+  "CF_RECORD_TYPE": "A",
+  "CF_PROXIED":  false,
+  "CF_TTL": 300
+}
