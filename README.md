@@ -20,7 +20,6 @@ A PowerShell script that automatically updates Cloudflare DNS records with your 
 
 2. **Configure the script**
    - Create a `config.json` file in the same directory as the script
-   - Use the format from `cloudflare-ddns.json` as a template:
 
    **For multiple records (recommended):**
    ```json
