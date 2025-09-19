@@ -1,6 +1,6 @@
 #requires -Version 5.1
 param(
-  [string]$ConfigPath = "your-path to \cloudflare-ddns.json"
+  [string]$ConfigPath = ".\cloudflare-ddns.json"
 )
 
 if (!(Test-Path $ConfigPath)) { Write-Error "Config not found: $ConfigPath"; exit 1 }
