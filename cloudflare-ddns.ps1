@@ -51,7 +51,10 @@ function Set-CachedIP {
   $cache = @{}
   if (Test-Path $cacheFile) {
     try {
-      $cache = Get-Content $cacheFile | ConvertFrom-Json -AsHashtable
+      $existingCache = Get-Content $cacheFile | ConvertFrom-Json
+      $existingCache.PSObject.Properties | ForEach-Object {
+        $cache[$_.Name] = $_.Value
+      }
     } catch {
       Write-Host "Warning: Failed to read existing cache, creating new one"
       $cache = @{}
@@ -62,7 +65,11 @@ function Set-CachedIP {
   $cache[$key] = $ip
   
   try {
-    $cache | ConvertTo-Json | Set-Content $cacheFile
+    $cacheObject = New-Object PSObject
+    $cache.Keys | ForEach-Object {
+      $cacheObject | Add-Member -MemberType NoteProperty -Name $_ -Value $cache[$_]
+    }
+    $cacheObject | ConvertTo-Json | Set-Content $cacheFile
   } catch {
     Write-Host "Warning: Failed to write cache file"
   }
